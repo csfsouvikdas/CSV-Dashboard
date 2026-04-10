@@ -8,6 +8,7 @@ interface DashboardState {
   setIsLoading: (loading: boolean) => void;
   filters: Record<string, any>;
   setFilters: (filters: Record<string, any>) => void;
+  updateFilter: (column: string, value: any) => void;
   layout: any[];
   setLayout: (layout: any[]) => void;
   chartConfigs: any[];
@@ -21,6 +22,9 @@ export const useDashboardStore = create<DashboardState>((set) => ({
   setIsLoading: (isLoading) => set({ isLoading }),
   filters: {},
   setFilters: (filters) => set({ filters }),
+  updateFilter: (column, value) => set((state) => ({
+    filters: { ...state.filters, [column]: value }
+  })),
   layout: [],
   setLayout: (layout) => set({ layout }),
   chartConfigs: [],
